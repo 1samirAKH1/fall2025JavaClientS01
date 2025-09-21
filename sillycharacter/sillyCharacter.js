@@ -40,39 +40,69 @@ let specialPowers = [];
 let favoriteFood = "Pizza";
 
 // Function to generate a random character description
-function generateDesc(){
-    let intro = ["Introducing.. ","Meet ","A big welcome to "]
+let intro = ["Introducing.. ","Meet ","A big welcome to ","Hello to ","Woah! It's "]
+let powers = [" and can fly faster than light"," and can shoot lasers out of their eyes"," and can control people with their mind"," and has incredible super strength"," and has super vision"," and could melt steel with their fingertips"]
+let savedIntro;
+let savedPower;
+
+function generateDesc(useSaved){
     let returnString;
-    //add a random intro bit to returnstring, then characters name and age
-    returnString = intro[Math.floor(Math.random()*intro.length)]+characterName+", a "+age+" year-old"
-    if (isSuperhero){ //if character is a superhero, add that
-        returnString += " superhero"
+    //determine if hero or not when not updating age
+    if (useSaved == false){
+        if (Math.floor(Math.random()*2) == 1){
+            isSuperhero = true
+        }else{
+            isSuperhero = false
+        }
     }
-    returnString += " who loves "+favoriteFood //favorite food
-    if (isSuperhero){ //if character is a superhero, add superpower
-        let intro = [" and can fly faster than light"," and can shoot lasers out of their eyes"," and can control people with their mind"," and has incredibly super strength"]
-        returnString += ""
+
+    //add a random intro
+    if (useSaved == false){
+        savedIntro = intro[Math.floor(Math.random()*intro.length)];
     }
-    returnString += "!"
+    returnString = savedIntro;
+
+    //add character name and age
+    returnString += characterName+", a "+age+" year-old";
+
+    //if character is a superhero, add that
+    if (isSuperhero){
+        returnString += " superhero";
+    }
+
+    //favorite food
+    returnString += " who loves "+favoriteFood;
+
+    //if character is a superhero, add superpower2
+    if (isSuperhero){
+        if (useSaved == false){
+            savedPower = powers[Math.floor(Math.random()*powers.length)];
+        }
+        returnString += savedPower;
+    }
+    returnString += "!";
+
     return returnString
 }
 
 // Function to update the character's description after changing age
-function updateDesc(){
-    document.getElementById("characterDescription").textContent = generateDesc();
+function updateDesc(useSaved){
+    document.getElementById("characterDescription").textContent = generateDesc(useSaved);
 }
-updateDesc();
+updateDesc(false);
 
 // Add event listeners for buttons using querySelector
 //age update
 document.querySelector("#increaseAgeButton").addEventListener('click', function(){
     age += 1;
+    updateDesc(true);
 });
 document.querySelector("#decreaseAgeButton").addEventListener('click', function(){
     age -= 1;
+    updateDesc(true);
 });
 
 //generate
 document.querySelector("#generateButton").addEventListener('click', function(){
-    updateDesc();
+    updateDesc(false);
 });
