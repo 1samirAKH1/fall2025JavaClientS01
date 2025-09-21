@@ -34,7 +34,7 @@ display the character's attributes in a creative and humorous way.
 
 // Declare and initialize variables
 let characterName = "John";
-let age = Math.floor(Math.random()*15)+18;
+let age = 20;
 let isSuperhero = false;
 let specialPowers = [];
 let favoriteFood = "Pizza";
@@ -42,29 +42,36 @@ let favoriteFood = "Pizza";
 // Function to generate a random character description
 let intro = ["Introducing.. ","Meet ","A big welcome to ","Hello to ","Woah! It's "]
 let powers = [" and can fly faster than light"," and can shoot lasers out of their eyes"," and can control people with their mind"," and has incredible super strength"," and has super vision"," and could melt steel with their fingertips"]
+let names = ["John","Sarah","Andrew","Kesha","Bob","Saul","William","Jesse","Walter"]
 let savedIntro;
 let savedPower;
 
 function generateDesc(useSaved){
     let returnString;
-    //determine if hero or not when not updating age
+    //if not using saved things, regenerate everything randomly.
     if (useSaved == false){
+        //superheroism
         if (Math.floor(Math.random()*2) == 1){
             isSuperhero = true
+            //superpower
+            savedPower = powers[Math.floor(Math.random()*powers.length)];
         }else{
             isSuperhero = false
         }
-    }
 
-    //add a random intro
-    if (useSaved == false){
+        //intro
         savedIntro = intro[Math.floor(Math.random()*intro.length)];
+
+        //name
+        characterName = names[Math.floor(Math.random()*names.length)];
+
+        //age
+        age = Math.floor(Math.random()*15)+18;
     }
-    returnString = savedIntro;
 
-    //add character name and age
-    returnString += characterName+", a "+age+" year-old";
-
+    //generate the string
+    returnString = savedIntro+characterName+", a "+age+" year-old";
+    
     //if character is a superhero, add that
     if (isSuperhero){
         returnString += " superhero";
@@ -76,7 +83,6 @@ function generateDesc(useSaved){
     //if character is a superhero, add superpower2
     if (isSuperhero){
         if (useSaved == false){
-            savedPower = powers[Math.floor(Math.random()*powers.length)];
         }
         returnString += savedPower;
     }
