@@ -43,6 +43,7 @@ let favoriteFood = "Pizza";
 let intro = ["Introducing.. ","Meet ","A big welcome to ","Hello to ","Woah! It's "]
 let powers = [" and can fly faster than light"," and can shoot lasers out of their eyes"," and can control people with their mind"," and has incredible super strength"," and has super vision"," and could melt steel with their fingertips"]
 let names = ["John","Sarah","Andrew","Kesha","Bob","Saul","William","Jesse","Walter"]
+let foods = ["Pizza","Macaroni","Sushi","Popcorn","Chips","Rice","Noodles","Spaghetti","Chicken"]
 let savedIntro;
 let savedPower;
 
@@ -67,6 +68,9 @@ function generateDesc(useSaved){
 
         //age
         age = Math.floor(Math.random()*15)+18;
+
+        //food
+        favoriteFood = foods[Math.floor(Math.random()*foods.length)];
     }
 
     //generate the string
