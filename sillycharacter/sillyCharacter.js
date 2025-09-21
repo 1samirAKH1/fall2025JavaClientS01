@@ -34,19 +34,32 @@ display the character's attributes in a creative and humorous way.
 
 // Declare and initialize variables
 let characterName = "John";
-let age = Math.floor(Math.random(18,30));
+let age = Math.floor(Math.random()*15)+18;
 let isSuperhero = false;
 let specialPowers = [];
 let favoriteFood = "Pizza";
 
 // Function to generate a random character description
-function changeName(){
-    
+function generateDesc(){
+    let intro = ["Introducing.. ","Meet ","A big welcome to "]
+    let returnString;
+    //add a random intro bit to returnstring, then characters name and age
+    returnString = intro[Math.floor(Math.random()*intro.length)]+characterName+", a "+age+" year-old"
+    if (isSuperhero){ //if character is a superhero, add that
+        returnString += " superhero"
+    }
+    returnString += " who loves "+favoriteFood //favorite food
+    if (isSuperhero){ //if character is a superhero, add superpower
+        let intro = [" and can fly faster than light"," and can shoot lasers out of their eyes"," and can control people with their mind"," and has incredibly super strength"]
+        returnString += ""
+    }
+    returnString += "!"
+    return returnString
 }
 
 // Function to update the character's description after changing age
 function updateDesc(){
-    document.getElementById("characterDescription").textContent = "descriptionhere";
+    document.getElementById("characterDescription").textContent = generateDesc();
 }
 updateDesc();
 
@@ -59,7 +72,7 @@ document.querySelector("#decreaseAgeButton").addEventListener('click', function(
     age -= 1;
 });
 
-//description update
-document.querySelector("#decreaseAgeButton").addEventListener('click', function(){
-    
+//generate
+document.querySelector("#generateButton").addEventListener('click', function(){
+    updateDesc();
 });
