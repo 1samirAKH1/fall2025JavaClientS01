@@ -33,16 +33,21 @@ display the character's attributes in a creative and humorous way.
 */
 
 // Declare and initialize variables
-
-
+let characterName = "John";
+let age = 0;
+let isSuperhero = false;
+let specialPowers = [];
+let favoriteFood = "";
 
 // Function to generate a random character description
-
+function changeName(newName){
+    characterName = newName;
+}
 
 // Functions to update character's age
-
-
-
+function changeAge(newAge){
+    age = newAge;
+}
 
 // Function to update the character's description after changing age
 
